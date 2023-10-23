@@ -11,4 +11,6 @@ public class SucursalDTO {
     private String nomSucursal;
     private String paisSucursal;
     private String tipusSucursal;
+
+List <String> countrys
 }
