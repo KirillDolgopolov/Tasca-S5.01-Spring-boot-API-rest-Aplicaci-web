@@ -1,17 +1,17 @@
 package cat.itacademy.barcelonactiva.dolgopolov.kirill.s05.t01.n01.models;
 
 
+import cat.itacademy.barcelonactiva.dolgopolov.kirill.s05.t01.n01.DTO.SucursalDTO;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.boot.autoconfigure.web.WebProperties;
+
 
 @Data
 @Entity
+@Builder
 public class Sucursal {
-    @Getter
-    @Setter
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -19,8 +19,16 @@ public class Sucursal {
 
     @Column
     private String nomSucursal;
-@Column
+    @Column
     private String paisSucursal;
 
+    public static Sucursal toEntity(SucursalDTO sucursalDto) {
+        Sucursal sucursal = Sucursal.builder()
+                .pk_SucursalID(sucursalDto.getPk_SucursalID())
+                .nomSucursal(sucursalDto.getNomSucursal())
+                .paisSucursal(sucursalDto.getPaisSucursal())
+                .build();
+        return sucursal;
+    }
 
 }
