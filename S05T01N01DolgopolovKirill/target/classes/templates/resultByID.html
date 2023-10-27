@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+<h1>Result:</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Country</th>
+        <th>European Union</th>
+    </tr>
+    <tr th:each="sucursal : ${sucursalDTO}">
+        <td th:text="${sucursal.pk_SucursalID}"></td>
+        <td th:text="${sucursal.nomSucursal}"></td>
+        <td th:text="${sucursal.paisSucursal}"></td>
+        <td th:text="${sucursal.tipusSucursal}"></td>
+    </tr>
+</table>
+</body>
+</html>

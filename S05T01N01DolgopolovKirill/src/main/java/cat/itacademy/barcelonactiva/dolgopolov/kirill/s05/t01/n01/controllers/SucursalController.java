@@ -41,10 +41,15 @@ public class SucursalController {
 
 
     @GetMapping("/getByID")
-    public String getByID (@RequestParam("sucursalId") Long sucursalId, Model model){
-        SucursalDTO sucursalDTO = sucursalService.getByID(sucursalId);
-        model.addAttribute("sucursalByID", sucursalDTO);
+    public String getByID(Model model) {
         return "findByID";
+    }
+
+    @GetMapping("resultByID")
+    public String resultByID (@RequestParam(name = "sucursalId") Long sucursalId, Model model){
+    SucursalDTO sucursalDTO = sucursalService.getByID(sucursalId);
+        model.addAttribute("sucursalDTO", sucursalDTO);
+        return "resultByID";
     }
 
 
