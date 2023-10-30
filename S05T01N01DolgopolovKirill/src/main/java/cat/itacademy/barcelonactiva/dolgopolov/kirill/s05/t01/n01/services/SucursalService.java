@@ -25,27 +25,35 @@ public class SucursalService {
     public List<SucursalDTO> getAllDTO() {
 
         List<Sucursal> list = sucursalRepository.findAll();
-        List <SucursalDTO> listDTO = new ArrayList<>();
-        list.forEach(s->listDTO.add(SucursalDTO.toDTO(s)));
+        List<SucursalDTO> listDTO = new ArrayList<>();
+        list.forEach(s -> listDTO.add(SucursalDTO.toDTO(s)));
         return listDTO;
     }
 
     public SucursalDTO getByID(Long id) {
         Optional<Sucursal> sucursal = sucursalRepository.findById(id);
-        if (sucursal.isPresent()){
-            Sucursal sucursalReal=sucursal.get();
+        if (sucursal.isPresent()) {
+            Sucursal sucursalReal = sucursal.get();
             return SucursalDTO.toDTO(sucursalReal);
         }
         return null;
     }
 
-//    public Sucursal updateSucursal(Sucursal request) {
-//        Sucursal sucursal = sucursalRepository.findById(request.getPk_SucursalID()).get();
-//        sucursal.setNomSucursal(request.getNomSucursal());
-//        sucursal.setPaisSucursal(request.getPaisSucursal());
-//        return sucursal;
-//    }
+
+    public Sucursal updateSucursal(SucursalDTO sucursalDto) {
+        Optional<Sucursal> optionalSucursal = sucursalRepository.findById(Long.valueOf(sucursalDto.getPk_SucursalID()));
+        if (optionalSucursal.isPresent()) {
+            Sucursal sucursalToSave = optionalSucursal.get();
+            sucursalToSave.setNomSucursal(sucursalDto.getNomSucursal());
+            sucursalToSave.setPaisSucursal(sucursalDto.getPaisSucursal());
+            return sucursalRepository.save(sucursalToSave);
+        }
+        else return null;
+
+    }
+
 
 
 
 }
+

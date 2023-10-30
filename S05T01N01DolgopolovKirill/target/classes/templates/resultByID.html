@@ -14,13 +14,14 @@
         <th>ID</th>
         <th>Name</th>
         <th>Country</th>
-        <th>European Union</th>
+        <th>UE or not</th>
     </tr>
-    <tr th:each="sucursal : ${sucursalDTO}">
-        <td th:text="${sucursal.pk_SucursalID}"></td>
-        <td th:text="${sucursal.nomSucursal}"></td>
-        <td th:text="${sucursal.paisSucursal}"></td>
-        <td th:text="${sucursal.tipusSucursal}"></td>
+
+    <tr>
+        <td th:text="${sucursalDTO.pk_SucursalID}"></td>
+        <td th:text="${sucursalDTO.nomSucursal}"></td>
+        <td th:text="${sucursalDTO.paisSucursal}"></td>
+        <td th:text="${sucursalDTO.tipusSucursal}"></td>
     </tr>
 </table>
 </body>

@@ -10,10 +10,10 @@
     <meta charset="UTF-8">
 
 
-    <title  th:text=${titol}></title>
+    <title th:text=${titol}></title>
 </head>
 <body>
-<h3>Adding new sucursal</h3>
+<h3>Update sucursal by ID</h3>
 
 <ul class="nav nav-tabs">
     <li class="nav-item">
@@ -25,18 +25,21 @@
 </ul>
 
 
-<form th:action=@{saveNewSucursal} method="post">
+<form th:action=@{update} method="post">
     <div class="mb-3 mt-3">
-        <label  class="control-label"> Name Sucursal:</label>
-        <input type="text" class="form-control"  placeholder="Enter name of sucursal" name="nomSucursal"
-        th:value=${sucursalDTO.nomSucursal} />
+        <label class="control-label"> ID Sucursal:</label>
+        <input type="text" class="form-control" placeholder="Enter ID of sucursal for update" name="pk_SucursalID"
+               th:value=${sucursalDTO.pk_SucursalID}/>
     </div>
+    <label class="control-label"> Name Sucursal:</label>
+    <input type="text" class="form-control" placeholder="Enter name of sucursal" name="nomSucursal"
+           th:value=${sucursalDTO.nomSucursal}/>
+
     <div class="mb-3">
-        <label  class="control-label">Country:</label>
-        <input type="text" class="form-control"  placeholder="Enter country" name="paisSucursal"
+        <label class="control-label">Country:</label>
+        <input type="text" class="form-control" placeholder="Enter country" name="paisSucursal"
                th:value=${sucursalDTO.paisSucursal} />
     </div>
-
 
 
     <button type="submit" class="btn btn-primary">Save</button>

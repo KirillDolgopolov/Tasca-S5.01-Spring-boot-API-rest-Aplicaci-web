@@ -1,6 +1,7 @@
 package cat.itacademy.barcelonactiva.dolgopolov.kirill.s05.t01.n01.controllers;
 
 import cat.itacademy.barcelonactiva.dolgopolov.kirill.s05.t01.n01.DTO.SucursalDTO;
+import cat.itacademy.barcelonactiva.dolgopolov.kirill.s05.t01.n01.models.Sucursal;
 import cat.itacademy.barcelonactiva.dolgopolov.kirill.s05.t01.n01.services.SucursalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class SucursalController {
     }
 
 
-    @PostMapping("/saveSucursal")
+    @PostMapping("/saveNewSucursal")
     public String saveSucursal(Model model, SucursalDTO sucursalDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "formularioSucursal";
@@ -34,7 +35,7 @@ public class SucursalController {
     }
 
     @GetMapping("/getAll")
-    public String getAllSucursal (Model model){
+    public String getAllSucursal(Model model) {
         model.addAttribute("listSucursal", sucursalService.getAllDTO());
         return "allSucursal";
     }
@@ -45,22 +46,32 @@ public class SucursalController {
         return "findByID";
     }
 
-    @GetMapping("resultByID")
-    public String resultByID (@RequestParam(name = "sucursalId") Long sucursalId, Model model){
-    SucursalDTO sucursalDTO = sucursalService.getByID(sucursalId);
+    @GetMapping("/resultByID")
+    public String resultByID(@RequestParam(name = "sucursalId") Long sucursalId, Model model) {
+        SucursalDTO sucursalDTO = sucursalService.getByID(sucursalId);
+        if (sucursalDTO == null) {
+            return "notFound";
+        }
         model.addAttribute("sucursalDTO", sucursalDTO);
         return "resultByID";
     }
 
+    @GetMapping("/updateByID")
+    public String updateByID(Model model) {
+        model.addAttribute("sucursalDTO", new SucursalDTO());
+        return "updateByID";
+    }
 
 
-//    @PutMapping("/update/")
-//    public ResponseEntity<Sucursal> updateSucursal(@RequestBody SucursalDTO request) {
-//        Sucursal sucursal = sucursalService.updateSucursal(request, request.getPk_SucursalID());
-//        if (sucursal==null){
-//            return new ResponseEntity(HttpStatus.NOT_FOUND);
-//        } else return new ResponseEntity<>(sucursal, HttpStatus.OK);
-//    }
+    @PostMapping("/update")
+    public String updateSucursal(Model model, SucursalDTO sucursalDto, BindingResult bindingResult) {
 
+        if (bindingResult.hasErrors()) {
+            return "updateByID";
+        }
+        if (sucursalService.updateSucursal(sucursalDto)!=null){
+            return "updated";
+        } else return "sucursalNotFound";
 
+    }
 }
