@@ -1,7 +1,6 @@
 package cat.itacademy.barcelonactiva.dolgopolov.kirill.s05.t01.n01.controllers;
 
 import cat.itacademy.barcelonactiva.dolgopolov.kirill.s05.t01.n01.DTO.SucursalDTO;
-import cat.itacademy.barcelonactiva.dolgopolov.kirill.s05.t01.n01.models.Sucursal;
 import cat.itacademy.barcelonactiva.dolgopolov.kirill.s05.t01.n01.services.SucursalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,16 +61,29 @@ public class SucursalController {
         return "updateByID";
     }
 
-
     @PostMapping("/update")
     public String updateSucursal(Model model, SucursalDTO sucursalDto, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "updateByID";
         }
-        if (sucursalService.updateSucursal(sucursalDto)!=null){
+        if (sucursalService.updateSucursal(sucursalDto) != null) {
             return "updated";
         } else return "sucursalNotFound";
 
     }
+
+    @GetMapping("/deleteByID")
+    public String deleteByID(Model model) {
+        return "deleteByID";
+    }
+
+    @PostMapping ("/delete")
+    public String deleteSucursal(@RequestParam(name = "sucursalId") Long sucursalId, Model model) {
+        if (sucursalService.deleteByID(sucursalId).equalsIgnoreCase("OK")) {
+            return "deleted";
+        } else return "sucursalNotFound";
+    }
+
+
 }

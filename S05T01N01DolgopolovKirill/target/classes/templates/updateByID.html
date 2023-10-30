@@ -13,7 +13,7 @@
     <title th:text=${titol}></title>
 </head>
 <body>
-<h3>Update sucursal by ID</h3>
+
 
 <ul class="nav nav-tabs">
     <li class="nav-item">
@@ -22,8 +22,19 @@
     <li class="nav-item">
         <a class="nav-link" th:href="@{/sucursal/getAll}">Get all sucursals</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/sucursal/getByID}">Get by ID</a>
+    </li>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/sucursal/updateByID}">Update by ID</a>
+    </li>
+    </li></li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/sucursal//deleteByID}">Delete by ID</a>
+    </li>
 </ul>
-
+<h3>Update sucursal by ID</h3>
 
 <form th:action=@{update} method="post">
     <div class="mb-3 mt-3">

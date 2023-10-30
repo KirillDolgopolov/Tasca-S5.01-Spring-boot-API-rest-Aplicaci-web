@@ -11,7 +11,6 @@
 </head>
 <body>
 
-
 <ul class="nav nav-tabs">
     <li class="nav-item">
         <a class="nav-link active" th:href="@{/sucursal/add}">Add new sucursal</a>
@@ -32,29 +31,19 @@
     </li>
 </ul>
 
-<h3>All sucursal list</h3>
-
-<table class="table table-condensed">
-    <thead>
-    <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Country</th>
-        <th scope="col">European Union</th>
-    </tr>
-    </thead>
-    <tbody>
+<h3>Delete sucursal by ID</h3>
 
 
-    <tr th:each="s : ${listSucursal}">
+<form th:action="@{/sucursal/delete}" method="get">
+    <div class="mb-3 mt-3">
+        <label class="control-label">Enter ID:</label>
+        <input type="text" class="form-control" placeholder="Enter ID" name="sucursalId">
+    </div>
 
-        <td th:text=${s.pk_SucursalID}></td>
-        <td th:text=${s.nomSucursal}></td>
-        <td th:text=${s.paisSucursal}></td>
-        <td th:text=${s.tipusSucursal}></td>
+    <button type="submit" class="btn btn-primary" th:href="@{/sucursal/delete}">Delete</button>
 
-    </tr>
-    </tbody>
-</table>
+</form>
+
+
 </body>
 </html>

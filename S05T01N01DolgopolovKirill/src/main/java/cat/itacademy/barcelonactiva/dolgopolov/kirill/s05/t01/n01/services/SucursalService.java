@@ -47,13 +47,17 @@ public class SucursalService {
             sucursalToSave.setNomSucursal(sucursalDto.getNomSucursal());
             sucursalToSave.setPaisSucursal(sucursalDto.getPaisSucursal());
             return sucursalRepository.save(sucursalToSave);
-        }
-        else return null;
+        } else return null;
 
     }
 
 
-
-
+    public String deleteByID(Long sucursalId) {
+        Optional<Sucursal> maybySucursal = sucursalRepository.findById(sucursalId);
+        if (maybySucursal.isPresent()) {
+            sucursalRepository.deleteById(sucursalId);
+            return "OK";
+        } else return "Not OK";
+    }
 }
 
