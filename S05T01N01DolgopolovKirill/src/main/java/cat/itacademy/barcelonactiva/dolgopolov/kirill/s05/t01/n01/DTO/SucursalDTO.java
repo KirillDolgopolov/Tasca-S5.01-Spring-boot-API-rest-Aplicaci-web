@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 import java.util.Arrays;
 import java.util.List;
 
-@Data @Builder
+@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class SucursalDTO {
@@ -20,26 +21,26 @@ public class SucursalDTO {
     private String paisSucursal;
     private String tipusSucursal;
 
-   private static final List<String> countries = Arrays.asList("Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czech Republic",
+    private static final List<String> countries = Arrays.asList("Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czech Republic",
             "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Ireland", "Italy", "Latvia",
             "Lithuania", "Luxembourg", "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia",
             "Slovenia", "Spain", "Sweden");
 
 
-   private void setTipeSucursal(){
-       if (countries.contains(this.paisSucursal)){
-           this.tipusSucursal="UE";
-       } else this.tipusSucursal="Not UE";
-   }
+    private void setTipeSucursal() {
+        if (countries.contains(this.paisSucursal)) {
+            this.tipusSucursal = "UE";
+        } else this.tipusSucursal = "Not UE";
+    }
 
-   public static SucursalDTO toDTO (Sucursal sucursal) {
-       SucursalDTO sucursalDto = SucursalDTO.builder()
-               .pk_SucursalID(sucursal.getPk_SucursalID())
-               .nomSucursal(sucursal.getNomSucursal())
-               .paisSucursal(sucursal.getPaisSucursal())
-               .build();
-       sucursalDto.setTipeSucursal();
-       return sucursalDto;
-   }
+    public static SucursalDTO toDTO(Sucursal sucursal) {
+        SucursalDTO sucursalDto = SucursalDTO.builder()
+                .pk_SucursalID(sucursal.getPk_SucursalID())
+                .nomSucursal(sucursal.getNomSucursal())
+                .paisSucursal(sucursal.getPaisSucursal())
+                .build();
+        sucursalDto.setTipeSucursal();
+        return sucursalDto;
+    }
 
 }
